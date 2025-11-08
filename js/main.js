@@ -5,6 +5,6 @@
         iniciarTema();
     }
 
-    if (typeof inicarBusqueda === "function") {
+    if (typeof iniciarBusqueda === "function") {
         iniciarTema();
     }
