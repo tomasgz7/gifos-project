@@ -6,8 +6,8 @@ body {
 }
 
 button {
-    background-color: #ffffff;
+    background-color: #f1f1f1;
     color: #222;
-    border: 1px solid #ffffff;
+    border: 1px solid #ccc;
     cursor: pointer;
 }
