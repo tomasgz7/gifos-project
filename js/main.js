@@ -6,5 +6,5 @@
     }
 
     if (typeof iniciarBusqueda === "function") {
-        iniciarTema();
+        iniciarBusqueda();
     }
