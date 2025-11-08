@@ -1,0 +1,13 @@
+body {
+    background-color: #ffffff;
+    color: #222;
+    font-family: Arial, sans-serif;
+    transition:  background-color 0.3s, color 0.3s;
+}
+
+button {
+    background-color: #ffffff;
+    color: #222;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+}
