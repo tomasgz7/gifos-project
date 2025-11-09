@@ -29,11 +29,16 @@
 
     <main>
       <h1>Crear un GIF desde tu cámara</h1>
-      <video id="vista-previa-camara" autoplay></video>
-      <button id="boton-grabar">Grabar</button>
-      <button id="boton-detener">Detener</button>
-      <button id="boton-subir">Subir GIF</button>
+
+      <video id="vista-previa-camara" autoplay muted playsinline></video>
+
       <div id="vista-previa-gif"></div>
+
+      <div class="controles">
+        <button id="boton-grabar">Grabar</button>
+        <button id="boton-detener" disabled>Detener</button>
+        <button id="boton-subir" disabled>Subir GIF</button>
+      </div>
     </main>
 
     <!-- Vinculacion los archivos JS-->
@@ -41,5 +46,7 @@
     <script src="js/search.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/record.js"></script>
+    <script src="js/upload.js"></script>
   </body>
 </html>
