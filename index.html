@@ -18,23 +18,32 @@
     <link rel="stylesheet" href="styles/themes/day.css" id="hoja-estilos" />
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="index.html">Inicio</a>
-        <a href="crear-gif.html">Crear GIF</a>
-        <a href="mis-gifs.html">Mis GIFs</a>
-      </nav>
-      <!-- Selector de tema igual al original -->
-      <div class="contenedor-tema">
-        <button id="boton-tema" class="btn-tema">
-          Elegir tema <img src="assets/icons/dropdown.svg" alt="" />
-        </button>
+    <header class="header-principal">
+      <div class="contenedor-header">
+        <img
+          id="logo"
+          src="assets/images/gifOF_logo.png"
+          alt="GifOS logo"
+          class="logo"
+        />
 
-        <!-- Menú desplegable -->
-        <ul id="menu-tema" class="menu-tema oculto">
-          <li data-tema="day">Sailor Day</li>
-          <li data-tema="night">Sailor Night</li>
-        </ul>
+        <nav class="nav-links">
+          <a href="index.html">Inicio</a>
+          <a href="crear-gif.html">Crear GIF</a>
+          <a href="mis-gifs.html">Mis GIFs</a>
+        </nav>
+
+        <!-- Botón "Elegir tema" -->
+        <div class="contenedor-tema">
+          <button id="boton-tema" class="btn-tema">
+            Elegir tema <img src="assets/icons/dropdown.svg" alt="" />
+          </button>
+
+          <ul id="menu-tema" class="menu-tema oculto">
+            <li data-tema="day">Sailor Day</li>
+            <li data-tema="night">Sailor Night</li>
+          </ul>
+        </div>
       </div>
     </header>
 
