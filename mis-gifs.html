@@ -1,65 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GifOS - Crear GIF</title>
-    <!-- Estilos Globales-->
-    <link rel="stylesheet" href="styles/base.css" />
-    <link rel="stylesheet" href="styles/components.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>GifOS - Mis GIFs</title>
+
+    <!-- Fuente principal -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&display=swap"
       rel="stylesheet"
     />
 
-    <!--Estilos del tema-->
-    <link rel="stylesheet" href="styles/themes/day.css" id="hoja-estilos" />
+    <!-- Hoja de estilos del tema -->
+    <link
+      id="hoja-estilos"
+      rel="stylesheet"
+      href="styles/themes/day.css"
+      type="text/css"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="assets/images/gifOF_logo.png"
+      class="favicon"
+    />
   </head>
+
   <body>
     <header class="header">
-      <p>¡Bienvenido a GifOS!</p>
-
-      <div class="logo-container">
-        <a href="index.html">
-          <img
-            class="logo"
-            id="logo"
-            src="assets/images/gifOF_logo.png"
-            alt="GifOS logo"
-          />
-        </a>
-
-        <div class="menu">
-          <a href="crear-gif.html" class="creargifs button">Crear GIF</a>
-          <a href="mis-gifs.html" class="misgifs button">Mis GIFs</a>
-
-          <div class="menu-desplegable">
-            <button class="button elegirtema" id="boton-tema">
-              Elegir tema
-              <img src="assets/icons/dropdown.svg" alt="Icono desplegable" />
-            </button>
-            <div class="desplegable oculto" id="menu-tema">
-              <button class="theme" data-tema="day">Sailor Day</button>
-              <button class="theme" data-tema="night">Sailor Night</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <p>
+        ¡Bienvenidos/as a GifOS! —————— Donde los gifs están. ////// Número de
+        visitas: 12.765.803
+      </p>
     </header>
 
+    <section>
+      <div class="logo-container">
+        <div>
+          <a href="index.html">
+            <img
+              class="logo"
+              id="logo"
+              src="assets/images/gifOF_logo.png"
+              alt="Logo de GifOS"
+            />
+          </a>
+        </div>
+
+        <nav class="menu">
+          <a class="button volver" href="index.html">Volver</a>
+
+          <div class="menu-desplegable">
+            <div>
+              <a class="button elegirtema" id="boton-tema">
+                Elegir tema
+                <img
+                  class="button desplegable"
+                  src="assets/icons/dropdown.svg"
+                  alt="Desplegable"
+                />
+              </a>
+            </div>
+
+            <div id="menu-tema" class="desplegable oculto">
+              <a href="#" data-tema="day" class="theme">Sailor Day</a>
+              <a href="#" data-tema="night" class="theme">Sailor Night</a>
+            </div>
+          </div>
+
+          <a id="misgifs" class="misgifs activo" href="mis-gifs.html"
+            ><u>M</u>is GIFs</a
+          >
+        </nav>
+      </div>
+    </section>
+
     <main>
-      <h1>
-        Mis GIFs guardados
-        <div id="contenedor-mis-gifs"></div>
-      </h1>
+      <div class="ventana">
+        <div class="contenedor-titulo">
+          <p class="titulo">Mis GIFOS</p>
+        </div>
+
+        <div id="contenedor-mis-gifs" class="grid-gifs"></div>
+      </div>
     </main>
 
-    <!-- Vinculacion los archivos JS-->
-
-    <script src="js/search.js"></script>
     <script src="js/theme.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/mis-gifs.js"></script>
   </body>
 </html>
