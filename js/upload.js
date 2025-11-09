@@ -40,3 +40,18 @@ async function subirGif(blob) {
     alert("Hubo un error al subir el GIF. Revisá la consola.");
   }
 }
+
+// Guarda el ID del nuevo GIF en LocalStorage
+
+function guardarGifEnLocalStorage(gifId) {
+  // Obtengo la lista actual de mis GIFs
+  let misGifs = JSON.parse(localStorage.getItem("misGifs")) || [];
+
+  // Agrego el nuevo ID
+  misGifs.push(gifId);
+
+  // Guardo la lista actualizada
+  localStorage.setItem("misGifs", JSON.stringify(misGifs));
+
+  console.log("ID guardado en LocalStorage:", gifId);
+}
