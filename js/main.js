@@ -1,6 +1,3 @@
-// MAIN.JS — Inicialización general de la aplicación GifOS
-
-//
 // Este archivo coordina la ejecución de los distintos módulos:
 // - Cambio de tema (theme.js)
 // - Búsqueda (search.js)
