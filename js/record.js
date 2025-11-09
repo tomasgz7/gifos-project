@@ -3,7 +3,6 @@
 
 (() => {
   // Se capturan los elementos del DOM necesarios para el manejo del flujo.
-
   const videoPreview = document.getElementById("vista-previa-camara"); // Video en vivo de la cámara.
   const btnGrabar = document.getElementById("boton-grabar"); // Botón que inicia la grabación.
   const btnDetener = document.getElementById("boton-detener"); // Botón que detiene la grabación.
@@ -76,8 +75,8 @@
 
     // Evento que se dispara cuando se detiene la grabación.
     mediaRecorder.onstop = () => {
+      
       // Se combinan todos los chunks en un solo Blob, que representa el video completo guardado temporalmente en memoria del navegador.
-
       recordedBlob = new Blob(chunks, { type: "video/webm" });
 
       // Se guarda globalmente para poder usarlo en el próximo paso (upload).
