@@ -1,163 +1,74 @@
-// En este documento manejo todo el proceso de subida del GIF a Giphy
-// después de haberlo grabado con la cámara en record.js.
+// En este documento me encargo de subir el GIF grabado a Giphy.
+// Mi objetivo es enviar el archivo generado en record.js, mostrar el progreso
+// y guardar el ID del GIF subido en localStorage para poder mostrarlo luego en "Mis GIFs".
 
-(() => {
-  const API_KEY = "Qp0Z5W8NSq0pDDmY3FpMEN6UVrDFSbQg";
+const API_KEY = "uHjVQ12FGcuONBHKMciylcBpPRg88ED5"; // reemplazá por tu propia API Key de Giphy
 
-  // Primero obtengo los elementos del DOM que voy a usar
-  const ventanaSubiendo = document.getElementById("subiendo-gif");
-  const ventanaExito = document.getElementById("gif-exito");
-  const gifSubidoImg = document.getElementById("gif-subido");
-  const copiarBtn = document.getElementById("copiar-enlace");
-  const descargarBtn = document.getElementById("descargar-gif");
-  const barra = document.getElementById("myBar");
-  const textoTiempo = document.getElementById("tiempo-restante");
+function subirGif(gifBlob) {
+  // Capturo los elementos del DOM que necesito para la interfaz de subida
+  const estadoSubida = document.getElementById("estado-subida");
+  const vistaPreviaGif = document.getElementById("vista-previa-gif");
 
-  // Estas variables me sirven para guardar temporalmente
-  // el blob del GIF grabado y su URL de previsualización
-  let recordedBlob = null;
-  let previewURL = null;
+  // Creo un objeto FormData para enviar el archivo al endpoint de Giphy
+  const formData = new FormData();
+  formData.append("file", gifBlob, "myGif.gif");
+  formData.append("api_key", API_KEY);
 
-  // Acá leo los IDs de los GIFs que ya subí y están guardados en localStorage
-  function getIds() {
-    try {
-      const raw = localStorage.getItem("misGifs");
-      return raw ? JSON.parse(raw) : [];
-    } catch {
-      return [];
-    }
-  }
+  // Muestro el texto "Subiendo..." mientras se realiza el POST
+  estadoSubida.textContent = "Subiendo GIF...";
+  estadoSubida.classList.remove("oculto");
 
-  // Con esta función agrego el nuevo ID al array en localStorage
-  function saveId(id) {
-    const ids = getIds();
-    if (!ids.includes(id)) {
-      ids.push(id);
-      localStorage.setItem("misGifs", JSON.stringify(ids));
-    }
-  }
+  // Realizo la petición a la API de Giphy
+  fetch("https://upload.giphy.com/v1/gifs", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Guardo el ID del nuevo GIF en el localStorage
+      const gifId = data.data.id;
+      guardarGifEnLocalStorage(gifId);
 
-  // Muestro o escondo elementos según el estado del flujo
-  function show(el) {
-    el.style.display = "block";
-  }
+      // Aviso visualmente que la subida fue exitosa
+      estadoSubida.textContent = "GIF subido correctamente";
 
-  function hide(el) {
-    el.style.display = "none";
-  }
+      // Limpio la vista previa y muestro el GIF final
+      vistaPreviaGif.innerHTML = `
+        <img src="https://media.giphy.com/media/${gifId}/giphy.gif" alt="GIF subido" />
+      `;
+    })
+    .catch((error) => {
+      console.error("Error al subir el GIF:", error);
+      estadoSubida.textContent = "Error al subir el GIF";
+    });
+}
 
-  // Esta función simula la barra de progreso mientras se sube el GIF
-  function simularProgreso() {
-    let width = 1;
-    barra.style.width = "1%";
-    barra.textContent = "1%";
-    textoTiempo.textContent = "Tiempo restante: algunos segundos";
-    const id = setInterval(() => {
-      if (width >= 100) {
-        clearInterval(id);
-      } else {
-        width += 2;
-        barra.style.width = width + "%";
-        barra.textContent = width + "%";
-      }
-    }, 50);
-  }
+// Esta función guarda los IDs en localStorage.
+// Si ya existen GIFs guardados, los mantengo.
+function guardarGifEnLocalStorage(gifId) {
+  let misGifs = JSON.parse(localStorage.getItem("misGifs")) || [];
+  misGifs.push(gifId);
+  localStorage.setItem("misGifs", JSON.stringify(misGifs));
+}
 
-  // En esta parte hago la subida real a la API de Giphy
-  // Uso un FormData para enviar el archivo grabado (Blob)
-  async function uploadToGiphy(blob) {
-    const form = new FormData();
-    form.append("file", blob, "miGif.gif");
+// Esta función inicializa el proceso de subida al presionar el botón.
+function iniciarSubida() {
+  const btnSubir = document.getElementById("btnSubir");
 
-    const res = await fetch(
-      `https://upload.giphy.com/v1/gifs?api_key=${API_KEY}`,
-      {
-        method: "POST",
-        body: form,
-      }
-    );
+  // Me aseguro de que exista el botón antes de agregar el evento
+  if (!btnSubir) return;
 
-    const data = await res.json();
-
-    if (!res.ok || !data?.data?.id) {
-      throw new Error("Falló la subida a Giphy");
-    }
-
-    // Devuelvo el ID del GIF subido
-    return data.data.id;
-  }
-
-  // Con esta función obtengo la URL final del GIF usando su ID
-  async function fetchGiphyURL(id) {
-    const res = await fetch(
-      `https://api.giphy.com/v1/gifs/${id}?api_key=${API_KEY}`
-    );
-    const data = await res.json();
-    return data?.data?.url || "";
-  }
-
-  // Esta es la función principal: se ejecuta cuando hago clic en “Subir Guifo”
-  async function handleUpload() {
-    // Si todavía no tengo un GIF grabado, aviso al usuario
-    if (!recordedBlob) {
-      alert("Todavía no hay un GIF grabado.");
+  btnSubir.addEventListener("click", () => {
+    // Valido que exista un gifBlob generado (de record.js)
+    if (typeof gifBlob === "undefined" || !gifBlob) {
+      alert("Primero grabá un GIF antes de subirlo.");
       return;
     }
 
-    // Muestro la ventana “Subiendo Guifo” y oculto la de éxito
-    show(ventanaSubiendo);
-    hide(ventanaExito);
-    simularProgreso();
-
-    try {
-      // Paso 1: subo el GIF a Giphy
-      const gifId = await uploadToGiphy(recordedBlob);
-
-      // Paso 2: guardo el ID en localStorage
-      saveId(gifId);
-
-      // Paso 3: obtengo la URL final del GIF subido
-      const url = await fetchGiphyURL(gifId);
-
-      // Paso 4: muestro el GIF en la ventana de éxito
-      gifSubidoImg.src = previewURL || URL.createObjectURL(recordedBlob);
-
-      // Paso 5: configuro los botones de copiar y descargar
-      copiarBtn.onclick = () => {
-        const input = document.createElement("input");
-        input.value = url;
-        document.body.appendChild(input);
-        input.select();
-        document.execCommand("copy");
-        document.body.removeChild(input);
-        alert("Copié el link del GIF al portapapeles.");
-      };
-
-      descargarBtn.onclick = () => {
-        const a = document.createElement("a");
-        a.href = previewURL || URL.createObjectURL(recordedBlob);
-        a.download = "miGif.gif";
-        a.click();
-      };
-
-      // Paso 6: cuando todo termina, muestro la ventana “Guifo subido con éxito”
-      hide(ventanaSubiendo);
-      show(ventanaExito);
-    } catch (error) {
-      console.error(error);
-      alert("Hubo un problema al subir el GIF. Intentá de nuevo.");
-      hide(ventanaSubiendo);
-    }
-  }
-
-  // Cuando termino de grabar el GIF en record.js, se dispara un evento “gif:ready”
-  // que me pasa el Blob y la URL del preview. Los guardo para usarlos acá.
-  window.addEventListener("gif:ready", (ev) => {
-    recordedBlob = ev.detail?.blob || null;
-    previewURL = ev.detail?.previewURL || null;
+    // Llamo a la función principal de subida
+    subirGif(gifBlob);
   });
+}
 
-  // Finalmente, creo un objeto global que me permite llamar a la función
-  // desde el botón “Subir Guifo” en el HTML.
-  window.GIFOS_UPLOAD = { subir: handleUpload };
-})();
+// Llamo a la función para habilitar el botón de subida.
+iniciarSubida();
