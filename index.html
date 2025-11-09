@@ -3,148 +3,111 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>GifOS - Inicio</title>
+
+    <!-- Estilos globales -->
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+
+    <!-- Tipografía Chakra Petch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      id="hoja-estilos"
-      rel="stylesheet"
-      href="styles/themes/day.css"
-      type="text/css"
-    />
-    <link
-      rel="shortcut icon"
-      href="assets/images/gifOF_logo.png"
-      class="favicon"
-    />
-    <title>GifOS</title>
+
+    <!-- Estilos del tema -->
+    <link rel="stylesheet" href="styles/themes/day.css" id="hoja-estilos" />
   </head>
 
   <body>
-    <header class="header">
-      <p>
-        ¡Bienvenidos/as a GifOS! —————— Donde los gifs están. ////// Número de
-        visitas: 12.765.803
-      </p>
-    </header>
+    <!-- Barra superior -->
+    <header>
+      <div class="barra-superior">
+        ¡Bienvenidos/as a GifOS.com! --------- Donde los gifs están //////
+        Número de visitas: 12.765.803
+      </div>
 
-    <section>
-      <div class="logo-container">
-        <div>
+      <!-- Contenedor principal del header -->
+      <div class="contenedor-header">
+        <a href="index.html">
           <img
-            class="logo"
             id="logo"
             src="assets/images/gifOF_logo.png"
-            alt="Logo de GifOS"
+            alt="GifOS logo"
+            class="logo"
           />
-        </div>
+        </a>
 
-        <nav class="menu">
-          <a class="button creargifs" href="crear-gif.html">Crear GIF</a>
+        <nav class="menu-header">
+          <a href="crear-gif.html" class="boton-header">Crear Guifos</a>
 
-          <div class="menu-desplegable">
-            <div>
-              <a class="button elegirtema" id="boton-tema">
-                Elegir tema
-                <img
-                  class="button desplegable"
-                  src="assets/icons/dropdown.svg"
-                  alt="Desplegable"
-                />
-              </a>
-            </div>
-
-            <div id="menu-tema" class="desplegable oculto">
-              <a href="#" data-tema="day" class="theme">Sailor Day</a>
-              <a href="#" data-tema="night" class="theme">Sailor Night</a>
-            </div>
+          <div class="dropdown">
+            <button id="boton-tema" class="boton-header">Elegir tema ▼</button>
+            <ul id="menu-tema" class="dropdown-menu oculto">
+              <li data-tema="day">Sailor Day</li>
+              <li data-tema="night">Sailor Night</li>
+            </ul>
           </div>
 
-          <a id="misgifs" class="misgifs" href="mis-gifs.html"
-            ><u>M</u>is GIFs</a
-          >
+          <a href="mis-gifs.html" class="link-header">Mis Guifos</a>
         </nav>
       </div>
-    </section>
+    </header>
 
-    <section class="busqueda">
-      <div class="ventana">
+    <!-- Contenido principal -->
+    <main>
+      <!-- Sección Buscador -->
+      <section class="busqueda ventana">
         <div class="contenedor-titulo">
           <p class="titulo">Buscar</p>
         </div>
 
-        <div class="contenedor-barra buscar">
-          <div class="contenedor1">
-            <input
-              id="search-bar"
-              value=""
-              class="barra-busqueda"
-              type="text"
-              placeholder="Busca GIFs, hashtags, temas, busca lo que quieras…"
+        <div class="contenedor-barra">
+          <input
+            id="entrada-busqueda"
+            class="barra-busqueda"
+            type="text"
+            placeholder="Busca GIFs, hashtags, temas, busca lo que quieras..."
+          />
+          <div class="boton-buscar" id="boton-buscar">
+            <img
+              class="boton-lupa"
+              src="assets/icons/lupa_inactive.svg"
+              alt="Lupa"
             />
-            <div class="boton-buscar" id="submit">
-              <img
-                class="boton-lupa"
-                src="assets/icons/lupa_inactive.svg"
-                alt="Lupa"
-              />
-              <a>Buscar</a>
-            </div>
+            <span>Buscar</span>
           </div>
         </div>
 
-        <div class="contenedor2">
-          <ul id="autocompleteTerms">
-            <li id="term1" class="autocomplete-term"></li>
-            <li id="term2" class="autocomplete-term"></li>
-            <li id="term3" class="autocomplete-term"></li>
-          </ul>
+        <ul id="autocompleteTerms">
+          <li id="term1" class="autocomplete-term"></li>
+          <li id="term2" class="autocomplete-term"></li>
+          <li id="term3" class="autocomplete-term"></li>
+        </ul>
+
+        <div id="contenedor-resultados" class="grid-gifs"></div>
+      </section>
+
+      <!-- Sección Sugerencias -->
+      <section class="sugerencias ventana">
+        <div class="contenedor-titulo">
+          <p class="titulo">Los más buscados</p>
         </div>
-      </div>
+        <div id="suggestions" class="grid-gifs"></div>
+      </section>
 
-      <div id="tags">
-        <a class="tag"></a>
-        <a class="tag"></a>
-        <a class="tag"></a>
-      </div>
+      <!-- Sección Tendencias -->
+      <section class="tendencias ventana">
+        <div class="contenedor-titulo">
+          <p class="titulo">Tendencias</p>
+        </div>
+        <div id="trends" class="grid-gifs"></div>
+      </section>
+    </main>
 
-      <div id="search-result-container" class="contenedor-barra">
-        <input
-          id="search-results"
-          class="barra-resultados"
-          value=""
-          type="text"
-          placeholder="Resultados"
-        />
-      </div>
-
-      <div id="gifs"></div>
-    </section>
-
-    <section class="sugerencias">
-      <div class="contenedor-barra">
-        <input
-          class="barra-sugerencias"
-          type="text"
-          placeholder="Los más buscados:"
-        />
-      </div>
-      <div id="suggestions" class="resultados-sugerencias"></div>
-    </section>
-
-    <section class="tendencias">
-      <div class="contenedor-barra">
-        <input class="barra-tendencias" type="text" placeholder="Tendencias:" />
-      </div>
-      <div id="trends" class="contenedor-tendencias"></div>
-    </section>
-
+    <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
     <script src="js/theme.js"></script>

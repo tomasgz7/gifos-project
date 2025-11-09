@@ -6,86 +6,71 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>GifOS - Mis GIFs</title>
 
+    <!-- Estilos globales -->
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+
     <!-- Fuente principal -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Hoja de estilos del tema -->
-    <link
-      id="hoja-estilos"
-      rel="stylesheet"
-      href="styles/themes/day.css"
-      type="text/css"
-    />
-
+    <!-- Tema -->
+    <link id="hoja-estilos" rel="stylesheet" href="styles/themes/day.css" />
     <link
       rel="shortcut icon"
       href="assets/images/gifOF_logo.png"
-      class="favicon"
+      type="image/png"
     />
   </head>
 
   <body>
-    <header class="header">
-      <p>
-        ¡Bienvenidos/as a GifOS! —————— Donde los gifs están. ////// Número de
-        visitas: 12.765.803
-      </p>
-    </header>
+    <!-- Header -->
+    <header>
+      <div class="barra-superior">
+        ¡Bienvenidos/as a GifOS.com! --------- Donde los gifs están //////
+        Número de visitas: 12.765.803
+      </div>
 
-    <section>
-      <div class="logo-container">
-        <div>
-          <a href="index.html">
-            <img
-              class="logo"
-              id="logo"
-              src="assets/images/gifOF_logo.png"
-              alt="Logo de GifOS"
-            />
-          </a>
-        </div>
+      <div class="contenedor-header">
+        <a href="index.html">
+          <img
+            id="logo"
+            src="assets/images/gifOF_logo.png"
+            alt="GifOS logo"
+            class="logo"
+          />
+        </a>
 
-        <nav class="menu">
-          <a class="button volver" href="index.html">Volver</a>
+        <nav class="menu-header">
+          <a href="crear-gif.html" class="boton-header">Crear Guifos</a>
 
-          <div class="menu-desplegable">
-            <div>
-              <a class="button elegirtema" id="boton-tema">
-                Elegir tema
-                <img
-                  class="button desplegable"
-                  src="assets/icons/dropdown.svg"
-                  alt="Desplegable"
-                />
-              </a>
-            </div>
-
-            <div id="menu-tema" class="desplegable oculto">
-              <a href="#" data-tema="day" class="theme">Sailor Day</a>
-              <a href="#" data-tema="night" class="theme">Sailor Night</a>
-            </div>
+          <div class="dropdown">
+            <button id="boton-tema" class="boton-header">Elegir tema ▼</button>
+            <ul id="menu-tema" class="dropdown-menu oculto">
+              <li data-tema="day">Sailor Day</li>
+              <li data-tema="night">Sailor Night</li>
+            </ul>
           </div>
 
-          <a id="misgifs" class="misgifs activo" href="mis-gifs.html"
-            ><u>M</u>is GIFs</a
-          >
+          <a href="mis-gifs.html" class="link-header">Mis Guifos</a>
         </nav>
       </div>
-    </section>
+    </header>
 
+    <!-- Contenido principal -->
     <main>
-      <div class="ventana">
+      <section class="ventana">
         <div class="contenedor-titulo">
           <p class="titulo">Mis GIFOS</p>
         </div>
 
         <div id="contenedor-mis-gifs" class="grid-gifs"></div>
-      </div>
+      </section>
     </main>
 
+    <!-- Scripts -->
     <script src="js/theme.js"></script>
     <script src="js/mis-gifs.js"></script>
   </body>
