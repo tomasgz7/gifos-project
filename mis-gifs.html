@@ -18,31 +18,33 @@
     <link rel="stylesheet" href="styles/themes/day.css" id="hoja-estilos" />
   </head>
   <body>
-    <header class="header-principal">
-      <div class="contenedor-header">
-        <img
-          id="logo"
-          src="assets/images/gifOF_logo.png"
-          alt="GifOS logo"
-          class="logo"
-        />
+    <header class="header">
+      <p>¡Bienvenido a GifOS!</p>
 
-        <nav class="nav-links">
-          <a href="index.html">Inicio</a>
-          <a href="crear-gif.html">Crear GIF</a>
-          <a href="mis-gifs.html">Mis GIFs</a>
-        </nav>
+      <div class="logo-container">
+        <a href="index.html">
+          <img
+            class="logo"
+            id="logo"
+            src="assets/images/gifOF_logo.png"
+            alt="GifOS logo"
+          />
+        </a>
 
-        <!-- Botón "Elegir tema" -->
-        <div class="contenedor-tema">
-          <button id="boton-tema" class="btn-tema">
-            Elegir tema <img src="assets/icons/dropdown.svg" alt="" />
-          </button>
+        <div class="menu">
+          <a href="crear-gif.html" class="creargifs button">Crear GIF</a>
+          <a href="mis-gifs.html" class="misgifs button">Mis GIFs</a>
 
-          <ul id="menu-tema" class="menu-tema oculto">
-            <li data-tema="day">Sailor Day</li>
-            <li data-tema="night">Sailor Night</li>
-          </ul>
+          <div class="menu-desplegable">
+            <button class="button elegirtema" id="boton-tema">
+              Elegir tema
+              <img src="assets/icons/dropdown.svg" alt="Icono desplegable" />
+            </button>
+            <div class="desplegable oculto" id="menu-tema">
+              <button class="theme" data-tema="day">Sailor Day</button>
+              <button class="theme" data-tema="night">Sailor Night</button>
+            </div>
+          </div>
         </div>
       </div>
     </header>

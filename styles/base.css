@@ -1,47 +1,58 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Chakra Petch', sans-serif;
-    transition: background-color .3s, color .3s;
-    overflow-x: hidden;
+  font-family: "Chakra Petch", sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+  overflow-x: hidden;
 }
 
 header {
-    width: 100%;
-    box-shadow: 0 1px 0 0 #110038;
+  width: 100%;
+  background: linear-gradient(to right, #4180f6, #f7c9f3 100%);
+  border-bottom: 1px solid #110038;
+  box-shadow: 0 1px 0 0 #110038;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 12px;
+  gap: 16px;
 }
 
 nav {
-    max-width: 960px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
 }
 
 main {
-    max-width: 960px;
-    margin: 40px auto;
-    padding: 0 20px;
-
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
-section{
-    margin: 32px 0;
+section {
+  margin: 32px 0;
 }
-section h2{
-    font-size: 14px; 
-    font-weight: 600;
-    padding: 6px 10px;
-    border: 1px solid #979797;
-    box-shadow: inset -2px 2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000;
-    background: #fff;
-    color: #110038;
+section h2 {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border: 1px solid #979797;
+  box-shadow: inset -2px 2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000;
+  background: #fff;
+  color: #110038;
+}
+
+/* Alineación del logo y botón de tema dentro del header */
+.logo {
+  height: 44px;
+}
+
+.contenedor-tema {
+  margin-left: 8px;
 }
