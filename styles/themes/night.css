@@ -7,6 +7,10 @@ header{
     background: linear-gradient(to right, #2E32FB 0%, #EE3EFE 100%);
 }
 
+main > h1 {
+    background: linear-gradient(to right, #5F64FF, #F279FF);
+}
+
 button {
     background-color: #333;
     color: #f8f8f8;
