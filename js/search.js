@@ -2,7 +2,7 @@
 // Mi objetivo es permitir que el usuario escriba un término, presione Enter o clic en Buscar
 // y mostrar los resultados en el contenedor correspondiente.
 
-const API_KEY = "uHjVQ12FGcuONBHKMciylcBpPRg88ED5"; // reemplazá por tu clave de Giphy
+const SEARCH_KEY = "uHjVQ12FGcuONBHKMciylcBpPRg88ED5"; // reemplazá por tu clave de Giphy
 
 // Esta función inicializa toda la lógica del buscador.
 function iniciarBusqueda() {
@@ -43,7 +43,7 @@ async function buscarGifs(termino, contenedorResultados) {
 
     // Realizo la petición a la API.
     const respuesta = await fetch(
-      `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${encodeURIComponent(
+      `https://api.giphy.com/v1/gifs/search?api_key=${SEARCH_KEY}&q=${encodeURIComponent(
         termino
       )}&limit=12&rating=g`
     );
