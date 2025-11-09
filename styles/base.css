@@ -1,3 +1,6 @@
+/* En este archivo defino la estructura general de la página */
+/* Aplico la tipografía global, reseteo los márgenes y configuro el layout básico */
+
 * {
   margin: 0;
   padding: 0;
@@ -6,53 +9,66 @@
 
 body {
   font-family: "Chakra Petch", sans-serif;
+  background-color: var(--fondo);
+  color: var(--texto);
   transition: background-color 0.3s, color 0.3s;
   overflow-x: hidden;
 }
 
-header {
-  width: 100%;
+/* Encabezado principal con estilo retro */
+.header {
   background: linear-gradient(to right, #4180f6, #f7c9f3 100%);
   border-bottom: 1px solid #110038;
+  padding: 8px 0;
+  text-align: center;
+  font-size: 12px;
+  color: #110038;
   box-shadow: 0 1px 0 0 #110038;
+}
+
+/* Sección del logo y navegación */
+.logo-container {
+  max-width: 960px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 8px 12px;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+/* Logo de la marca */
+.logo {
+  height: 48px;
+}
+
+/* Navegación superior */
+.menu {
+  display: flex;
+  align-items: center;
   gap: 16px;
 }
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
+/* Enlaces principales */
+.menu a {
+  text-decoration: none;
+  color: #110038;
+  font-family: "MS Sans Serif", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
 }
 
+.menu a:hover {
+  text-decoration: underline;
+}
+
+/* Clase para marcar la sección activa */
+.menu .activo {
+  text-decoration: underline;
+}
+
+/* Estructura principal */
 main {
   max-width: 960px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-section {
-  margin: 32px 0;
-}
-section h2 {
-  font-size: 14px;
-  font-weight: 600;
-  padding: 6px 10px;
-  border: 1px solid #979797;
-  box-shadow: inset -2px 2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000;
-  background: #fff;
-  color: #110038;
-}
-
-/* Alineación del logo y botón de tema dentro del header */
-.logo {
-  height: 44px;
-}
-
-.contenedor-tema {
-  margin-left: 8px;
+  margin: 0 auto;
+  padding: 20px;
 }

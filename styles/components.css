@@ -1,222 +1,94 @@
-main > h1 {
+/* En este bloque defino los estilos de los botones retro */
+/* Mantengo los colores de los temas día/noche y el relieve clásico */
+
+.button {
+  font-family: "MS Sans Serif", Arial, sans-serif;
   font-size: 14px;
-  font-weight: 600;
+  padding: 6px 12px;
+  border: 1px solid var(--borde-boton);
+  background-color: var(--boton);
+  color: var(--texto-boton);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #fff;
+  transition: all 0.15s ease-in-out;
+}
+
+.button:hover {
+  background-color: #ee3efe;
   color: #fff;
-  padding: 8px 12px;
-  box-shadow: 0 1px 0 0 #110038;
 }
 
-#entrada-busqueda {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #979797;
-  box-shadow: inset -2px -2px 0 0 #e6e6e6, inset 2px 2px 0 0 #000;
+.button:active {
+  background-color: #f7c9f3;
+  border: 1px solid #b4b4b4;
 }
 
-#contenedor-resultados {
-  margin-top: 10px;
-  padding: 10px;
-  background: #fffafe;
-  border: 1px solid #e6bbe2;
-  box-shadow: inset -2px -2px 0 0 #e6dce4, inset 2px 2px 0 0 #80687d;
+/* Botón "Elegir tema" con menú desplegable */
+.menu-desplegable {
+  position: relative;
 }
 
-#contenedor-resultados,
-#contenedor-mis-gifs {
+.desplegable {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: #e6e6e6;
+  border: 1px solid #b4b4b4;
+  width: 150px;
+  z-index: 10;
+}
+
+.desplegable a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  font-family: "MS Sans Serif", Arial, sans-serif;
+  font-size: 14px;
+  color: #110038;
+}
+
+.desplegable a:hover {
+  background-color: #2e32fb;
+  color: #fff;
+}
+
+/* Clase reutilizable para ocultar elementos */
+.oculto {
+  display: none;
+}
+
+/* Cuadrículas de GIFs (resultados, sugeridos, mis GIFs) */
+.grid-gifs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   margin-top: 16px;
 }
 
-#contenedor-resultados img,
-#contenedor-mis-gifs img {
-  width: 100px;
-  height: 220px;
-  object-fit: cover;
+.grid-gifs img {
+  width: 100%;
+  height: auto;
   border: 1px solid #6b6191;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-#contenedor-resultados img:hover,
-#contenedor-mis-gifs img:hover {
-  transform: scale(1s);
+.grid-gifs img:hover {
+  transform: scale(1.03);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
+/* Adaptabilidad */
 @media (max-width: 900px) {
-  #contenedor-resultados,
-  #contenedor-mis-gifs {
+  .grid-gifs {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  main {
-    padding: 0 10px;
-  }
-  #contenedor-resultados,
-  #contenedor-mis-gifs {
+  .grid-gifs {
     grid-template-columns: repeat(2, 1fr);
   }
-  #contenedor-resultados img,
-  #contenedor-mis-gifs img {
-    height: 180px;
-  }
-}
-
-button {
-  font-family: inherit;
-  font-size: 15px;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: 1px solid #110038;
-  box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #fff;
-  transition: transform 0.15s ease;
-}
-
-button:hover {
-  outline: 1px dashed currentColor;
-  outline-offset: -4px;
-  transform: scale(1s);
-}
-
-/* header general modo retro           */
-
-.header-principal {
-  background: linear-gradient(to right, #4180f6, #f7c9f3 100%);
-  border: 1px solid #110038;
-  padding: 8px;
-}
-
-.contenedor-header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 20px;
-}
-
-.logo {
-  height: 40px;
-}
-
-.nav-links a {
-  margin-right: 16px;
-  font-family: "MS Sans Serif", Arial, sans-serif;
-  color: #110038;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.nav-links a:hover {
-  text-decoration: underline;
-}
-
-/* boton de elegir tema, en modo retro */
-
-.contenedor-tema {
-  position: relative;
-}
-
-.btn-tema {
-  background-color: var(--boton);
-  color: var(--texto-boton);
-  border: 1px solid #ffffff;
-  font-family: "MS Sans Serif", Arial, sans-serif;
-  font-size: 14px;
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-}
-
-.btn-tema:hover {
-  background-color: #ee3efe;
-  color: #fff;
-}
-
-.btn-tema:active {
-  border: 1px solid #b4b4b4;
-  background-color: #f7c9f3;
-  color: #110038;
-}
-
-/* Menu desplegable del tema*/
-
-.menu-tema {
-  list-style: none;
-  position: absolute;
-  top: 110%;
-  left: 0;
-  background-color: #e6e6e6;
-  border: 1px solid #b4b4b4;
-  width: 150px;
-  padding: 0;
-  margin: 0;
-  z-index: 10;
-}
-
-.menu-tema li {
-  padding: 8px;
-  font-family: "MS Sans Serif", Arial, sans-serif;
-  font-size: 14px;
-  color: #110038;
-  cursor: pointer;
-}
-
-.menu-tema li:hover {
-  background-color: #2e32fb;
-  color: #fff;
-}
-
-.oculto {
-  display: none;
-}
-
-/* Alineación del header igual al proyecto original */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  background: linear-gradient(to right, #4180f6, #f7c9f3 100%);
-  border-bottom: 1px solid #110038;
-  padding: 8px 12px;
-  gap: 16px;
-}
-
-/* El logo queda primero y el resto al lado */
-header .logo {
-  height: 44px;
-}
-
-/* Navegación y botón de tema al mismo nivel, pegados a la izquierda */
-header nav {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-/* Enlaces del menú con estilo retro */
-header nav a {
-  text-decoration: none;
-  color: #110038;
-  font-family: "MS Sans Serif", Arial, sans-serif;
-  font-weight: bold;
-}
-
-header nav a:hover {
-  text-decoration: underline;
-}
-
-/* El contenedor del tema queda junto al menú */
-header .contenedor-tema {
-  margin-left: 8px;
-}
-
-/* Aseguro que el menú desplegable del tema no se rompa dentro del header */
-.menu-tema {
-  top: 100%;
-  left: 0;
 }
