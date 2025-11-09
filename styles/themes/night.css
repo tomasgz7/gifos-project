@@ -1,8 +1,10 @@
 body {
-    background-color: #121212;
-    color: #f8f8f8;
-    font-family: Arial, sans-serif;
-    transition:  background-color 0.3s, color 0.3s;
+    background-color: #110038;
+    color: #fff;
+}
+
+header{
+    background: linear-gradient(to right, #2E32FB 0%, #EE3EFE 100%);
 }
 
 button {

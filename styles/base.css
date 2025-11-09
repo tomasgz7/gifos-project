@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: 'Chakra Petch', sans-serif;
+    transition: background-color .3s, color .3s;
+    overflow-x: hidden;
+}
+
+header {
+    width: 100%;
+    box-shadow: 0 1px 0 0 #110038;
+}
+
+nav {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 0;
+}
+
+main {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 0 20px;
+
+}
+
+section{
+    margin: 32px 0;
+}
+section h2{
+    font-size: 14px; 
+    font-weight: 600;
+    padding: 6px 10px;
+    border: 1px solid #979797;
+    box-shadow: inset -2px 2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000;
+    background: #fff;
+    color: #110038;
+}
