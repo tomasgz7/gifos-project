@@ -70,13 +70,14 @@
 
     // Evento que se dispara cada vez que el grabador tiene datos disponibles.
     mediaRecorder.ondataavailable = (e) => {
-      // Solo se agregan fragmentos válidos (no vacíos).
+      // Cada fragmento (chunk, es un fragmento) del video se va guardando en el arreglo.
       if (e.data.size) chunks.push(e.data);
     };
 
     // Evento que se dispara cuando se detiene la grabación.
     mediaRecorder.onstop = () => {
-      // Combina todos los fragmentos (chunks) en un solo archivo Blob.
+      // Se combinan todos los chunks en un solo Blob, que representa el video completo guardado temporalmente en memoria del navegador.
+
       recordedBlob = new Blob(chunks, { type: "video/webm" });
 
       // Se guarda globalmente para poder usarlo en el próximo paso (upload).
