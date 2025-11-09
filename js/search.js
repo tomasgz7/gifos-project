@@ -2,7 +2,7 @@
 // Mi objetivo es permitir que el usuario escriba un término, presione Enter o clic en Buscar
 // y mostrar los resultados en el contenedor correspondiente.
 
-const SEARCH_KEY = "uHjVQ12FGcuONBHKMciylcBpPRg88ED5"; // reemplazá por tu clave de Giphy
+const SEARCH_KEY = "1rUtXF100IXzkDpmrvSnphzoJ3hjYNi9"; // reemplazá por tu clave de Giphy
 
 // Esta función inicializa toda la lógica del buscador.
 function iniciarBusqueda() {

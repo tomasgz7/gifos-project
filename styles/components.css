@@ -268,3 +268,30 @@ input[type="text"] {
 .tendencias .hashtag-container {
   display: none !important;
 }
+
+/* BOTÓN "VER MÁS" DE LAS SUGERENCIAS */
+
+.contenedor-boton-vermas {
+  text-align: left;
+  margin-top: 4px;
+}
+
+.boton-vermas {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  background-color: #2e32fb;
+  color: #fff;
+  font-family: "MS Sans Serif", Arial, sans-serif;
+  font-size: 12px;
+  border: 1px solid #110038;
+  padding: 3px 6px;
+  cursor: pointer;
+  box-shadow: inset -1px -1px 0 0 #997d97, inset 1px 1px 0 0 #fff;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.contenedor-gif:hover .boton-vermas {
+  opacity: 1;
+}

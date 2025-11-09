@@ -59,21 +59,25 @@ function iniciarGrabacion() {
 
     // Cuando la grabación finaliza, uno todos los fragmentos en un solo archivo (Blob).
     recorder.onstop = () => {
+      // Creo el archivo final a partir de los fragmentos grabados
       gifBlob = new Blob(recordedChunks, { type: "video/webm" });
 
-      // Muestro una vista previa del GIF grabado.
+      //  Hago que gifBlob sea accesible desde otros scripts (como upload.js)
+      window.gifBlob = gifBlob;
+
+      // Muestro una vista previa del GIF grabado
       const videoURL = URL.createObjectURL(gifBlob);
       const gifPreviewElement = document.createElement("video");
       gifPreviewElement.src = videoURL;
       gifPreviewElement.controls = true;
       gifPreviewElement.loop = true;
 
-      // Limpio el contenedor y muestro el nuevo video.
+      // Limpio el contenedor y muestro el nuevo video
       previewGif.innerHTML = "";
       previewGif.appendChild(gifPreviewElement);
       previewGif.classList.remove("oculto");
 
-      // Muestro el botón para subir el GIF.
+      // Muestro el botón para subir el GIF
       btnSubir.classList.remove("oculto");
     };
 

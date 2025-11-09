@@ -1,72 +1,57 @@
-// En este documento manejo todo lo relacionado con la selección y cambio de tema.
-// El objetivo es reproducir el comportamiento del proyecto original GIFOS:
-// un botón “Elegir tema” que abre un menú con las opciones “Sailor Day” y “Sailor Night”.
-// Al elegir una opción, se aplica el tema correspondiente, se actualiza el logo,
-// y se guarda la preferencia en el localStorage para mantenerla al recargar la página.
+(function () {
+  // Esperar siempre a que el DOM esté listo antes de buscar elementos
+  document.addEventListener("DOMContentLoaded", function () {
+    const hojaEstilos = document.getElementById("hoja-estilos");
+    const botonTema = document.getElementById("boton-tema");
+    const menuTema = document.getElementById("menu-tema");
+    const logo = document.getElementById("logo");
 
-function iniciarTema() {
-  // Obtengo los elementos principales que voy a manipular.
-  // "hojaEstilos" es el <link> donde cargo el archivo CSS del tema actual.
-  // "botonTema" es el botón que abre el menú desplegable.
-  // "menu" contiene las opciones de tema (Sailor Day / Sailor Night).
-  // "logo" es la imagen principal que cambia según el tema.
-  const hojaEstilos = document.getElementById("hoja-estilos");
-  const botonTema = document.getElementById("boton-tema");
-  const menu = document.getElementById("menu-tema");
-  const logo = document.getElementById("logo");
+    // Si algo no existe, no hacemos nada
+    if (!hojaEstilos || !botonTema || !menuTema) {
+      console.warn(
+        "Elementos del cambio de tema no encontrados en esta página."
+      );
+      return;
+    }
 
-  // Defino el tema inicial leyendo el valor guardado en localStorage.
-  // Si no hay nada guardado, arranco con el modo “day”.
-  let temaActual = localStorage.getItem("tema") || "day";
+    // Cargo el tema guardado o uso el de día por defecto
+    let temaActual = localStorage.getItem("tema") || "day";
+    aplicarTema(temaActual);
 
-  // Aplico el archivo CSS que corresponde al tema guardado.
-  hojaEstilos.href = `styles/themes/${temaActual}.css`;
+    // Abrir / cerrar menú
+    botonTema.addEventListener("click", function (e) {
+      e.stopPropagation();
+      menuTema.classList.toggle("oculto");
+    });
 
-  // Actualizo el logo según el tema actual.
-  if (logo) {
-    logo.src = temaActual === "night"
-      ? "assets/images/gifOF_logo_dark.png"
-      : "assets/images/gifOF_logo.png";
-  }
+    // Cambiar tema al hacer clic en una opción
+    menuTema.querySelectorAll("li").forEach(function (opcion) {
+      opcion.addEventListener("click", function (e) {
+        temaActual = e.target.getAttribute("data-tema");
+        aplicarTema(temaActual);
+        localStorage.setItem("tema", temaActual);
+        menuTema.classList.add("oculto");
+      });
+    });
 
-  // Al hacer clic en el botón “Elegir tema”, muestro u oculto el menú desplegable.
-  botonTema.addEventListener("click", () => {
-    menu.classList.toggle("oculto");
-  });
-
-  // Escucho los clics dentro del menú de opciones.
-  // Cuando elijo una opción, aplico el tema seleccionado.
-  menu.addEventListener("click", (e) => {
-    if (e.target.tagName === "LI") {
-      // Guardo el nuevo tema seleccionado.
-      temaActual = e.target.getAttribute("data-tema");
-
-      // Aplico el CSS correspondiente.
-      hojaEstilos.href = `styles/themes/${temaActual}.css`;
-
-      // Cambio el logo según el nuevo tema.
-      if (logo) {
-        logo.src = temaActual === "night"
-          ? "assets/images/gifOF_logo_dark.png"
-          : "assets/images/gifOF_logo.png";
+    // Cerrar menú si hago clic fuera
+    document.addEventListener("click", function (e) {
+      if (!menuTema.contains(e.target) && !botonTema.contains(e.target)) {
+        menuTema.classList.add("oculto");
       }
+    });
 
-      // Guardo la elección en localStorage.
-      localStorage.setItem("tema", temaActual);
+    function aplicarTema(tema) {
+      // Cambiar hoja de estilo
+      hojaEstilos.setAttribute("href", `styles/themes/${tema}.css`);
 
-      // Cierro el menú después de hacer clic.
-      menu.classList.add("oculto");
+      // Cambiar logo según el tema
+      if (logo) {
+        logo.src =
+          tema === "night"
+            ? "assets/images/gifOF_logo_dark.png"
+            : "assets/images/gifOF_logo.png";
+      }
     }
   });
-
-  // Cierro el menú si hago clic fuera del contenedor de tema.
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".contenedor-tema")) {
-      menu.classList.add("oculto");
-    }
-  });
-}
-
-// Llamo a la función apenas se carga la página
-// para aplicar el tema guardado y dejar todo listo.
-iniciarTema();
+})();

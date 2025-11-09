@@ -2,7 +2,7 @@
 // Mi objetivo es enviar el archivo generado en record.js, mostrar el progreso
 // y guardar el ID del GIF subido en localStorage para poder mostrarlo luego en "Mis GIFs".
 
-const API_KEY = "uHjVQ12FGcuONBHKMciylcBpPRg88ED5"; // reemplazá por tu propia API Key de Giphy
+const API_KEY = "1rUtXF100IXzkDpmrvSnphzoJ3hjYNi9"; // reemplazá por tu propia API Key de Giphy
 
 function subirGif(gifBlob) {
   // Capturo los elementos del DOM que necesito para la interfaz de subida
@@ -69,6 +69,3 @@ function iniciarSubida() {
     subirGif(gifBlob);
   });
 }
-
-// Llamo a la función para habilitar el botón de subida.
-iniciarSubida();

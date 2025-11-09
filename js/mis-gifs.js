@@ -2,9 +2,9 @@
 // Mi objetivo es leer los IDs almacenados en localStorage y traer desde Giphy
 // las imágenes para mostrarlas en la grilla principal de "Mis GIFs".
 
-const API_KEY = "TU_API_KEY_AQUI"; // reemplazá por tu API Key de Giphy
+const API_KEY = "1rUtXF100IXzkDpmrvSnphzoJ3hjYNi9"; // reemplazá por tu API Key de Giphy
 
-function iniciarMisGifs() {
+function cargarMisGifs() {
   const contenedorMisGifs = document.getElementById("contenedor-mis-gifs");
   if (!contenedorMisGifs) return;
 

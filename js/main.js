@@ -1,45 +1,62 @@
-// En este archivo manejo toda la inicialización general de mi aplicación GifOS.
-// Aquí controlo qué funciones se ejecutan en cada página, y cargo las secciones dinámicas
-// como “Los más buscados” y “Tendencias”, igual que en el proyecto original.
+// MAIN.JS — Inicialización general de la aplicación GifOS
 
-const API_KEY = "uHjVQ12FGcuONBHKMciylcBpPRg88ED5";
+//
+// Este archivo coordina la ejecución de los distintos módulos:
+// - Cambio de tema (theme.js)
+// - Búsqueda (search.js)
+// - Grabación y subida de GIFs (record.js + upload.js)
+// - Mis GIFs (mis-gifs.js)
+// - Secciones dinámicas del inicio (sugerencias y tendencias)
+//
 
+const API_KEY = "1rUtXF100IXzkDpmrvSnphzoJ3hjYNi9";
+
+// Espera a que todo el DOM esté listo antes de inicializar las funciones
 document.addEventListener("DOMContentLoaded", () => {
-  // Inicializo el tema (día/noche)
-  if (typeof iniciarTema === "function") iniciarTema();
+  // Inicialización del tema (día / noche)
 
-  // Si existe el buscador, activo la búsqueda (desde search.js)
-  if (
-    document.getElementById("entrada-busqueda") &&
-    typeof iniciarBusqueda === "function"
-  ) {
+  if (typeof iniciarTema === "function") {
+    try {
+      iniciarTema();
+    } catch (e) {
+      console.warn(" No se pudo iniciar el tema automáticamente:", e);
+    }
+  } else {
+    // Si theme.js cargó después, lo lanzo al final de la carga
+    window.addEventListener("load", () => {
+      if (typeof iniciarTema === "function") iniciarTema();
+    });
+  }
+
+  // Lógica de búsqueda (solo en index.html)
+
+  const inputBusqueda = document.getElementById("entrada-busqueda");
+  if (inputBusqueda && typeof iniciarBusqueda === "function") {
     iniciarBusqueda();
   }
 
-  // Si estoy en la vista de creación de GIFs, activo la cámara
-  if (
-    document.getElementById("vista-previa-camara") &&
-    typeof iniciarGrabacion === "function"
-  ) {
-    iniciarGrabacion();
+  //  Grabación y subida de GIFs (solo en crear-gif.html)
+
+  const vistaCamara = document.getElementById("vista-previa-camara");
+  if (vistaCamara) {
+    if (typeof iniciarGrabacion === "function") iniciarGrabacion();
+    if (typeof iniciarSubida === "function") iniciarSubida();
   }
 
-  // Si estoy en la sección "Mis GIFs"
-  if (
-    document.getElementById("contenedor-mis-gifs") &&
-    typeof cargarMisGifs === "function"
-  ) {
+  //  Cargar Mis GIFs (solo en mis-gifs.html)
+
+  const contenedorMisGifs = document.getElementById("contenedor-mis-gifs");
+  if (contenedorMisGifs && typeof cargarMisGifs === "function") {
     cargarMisGifs();
   }
 
-  // Cargo las secciones dinámicas del Home
-  cargarSugerencias();
-  cargarTendencias();
+  // Secciones dinámicas del inicio (solo en index.html)
+
+  if (document.getElementById("suggestions")) cargarSugerencias();
+  if (document.getElementById("trends")) cargarTendencias();
 });
 
-// =============================================================
-// SECCIÓN: “LOS MÁS BUSCADOS” (SUGERENCIAS)
-// =============================================================
+//  SECCIÓN: “LOS MÁS BUSCADOS” (SUGERENCIAS)
 
 async function cargarSugerencias() {
   try {
@@ -61,17 +78,19 @@ async function cargarSugerencias() {
       contenedorGif.innerHTML = `
         <div class="contenedor-titulo">
           <p class="titulo">#${tituloGif}</p>
-          <button class="boton-vermas" data-busqueda="${tituloGif}">Ver más...</button>
         </div>
         <div class="contenedor-barra">
           <img src="${gif.images.fixed_height.url}" alt="${gif.title}" class="imagen-sugerencias" />
+        </div>
+        <div class="contenedor-boton-vermas">
+          <button class="boton-vermas" data-busqueda="${tituloGif}">Ver más...</button>
         </div>
       `;
 
       contenedor.appendChild(contenedorGif);
     });
 
-    // Los botones "Ver más" llaman a la función del módulo de búsqueda (search.js)
+    // Botones “Ver más” → reutilizan la función buscarGifs() de search.js
     document.querySelectorAll(".boton-vermas").forEach((boton) => {
       boton.addEventListener("click", (e) => {
         const termino = e.target.getAttribute("data-busqueda");
@@ -83,19 +102,17 @@ async function cargarSugerencias() {
           buscarGifs(termino, contenedorResultados);
         } else {
           console.error(
-            "No se encontró la función buscarGifs del módulo de búsqueda."
+            " No se encontró la función buscarGifs del módulo search.js"
           );
         }
       });
     });
   } catch (error) {
-    console.error("Error cargando sugerencias:", error);
+    console.error(" Error cargando sugerencias:", error);
   }
 }
 
-// =============================================================
 // SECCIÓN: “TENDENCIAS”
-// =============================================================
 
 async function cargarTendencias() {
   try {
@@ -123,9 +140,7 @@ async function cargarTendencias() {
   }
 }
 
-// =============================================================
-// UTILIDADES
-// =============================================================
+//  UTILIDADES
 
 function logEstado(mensaje) {
   console.log(`🔹 [GifOS] ${mensaje}`);
