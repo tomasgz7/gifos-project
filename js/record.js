@@ -1,38 +1,33 @@
-
-
 // Función: Controla el acceso a la cámara, la grabación del GIF y la vista previa.
 // Grabación con MediaRecorder API
 
-
 (() => {
-  
   // Se capturan los elementos del DOM necesarios para el manejo del flujo.
-  
+
   const videoPreview = document.getElementById("vista-previa-camara"); // Video en vivo de la cámara.
-  const btnGrabar = document.getElementById("boton-grabar");           // Botón que inicia la grabación.
-  const btnDetener = document.getElementById("boton-detener");         // Botón que detiene la grabación.
-  const btnSubir = document.getElementById("boton-subir");             // Botón que sube el GIF 
+  const btnGrabar = document.getElementById("boton-grabar"); // Botón que inicia la grabación.
+  const btnDetener = document.getElementById("boton-detener"); // Botón que detiene la grabación.
+  const btnSubir = document.getElementById("boton-subir"); // Botón que sube el GIF
   const contenedorPreviewGif = document.getElementById("vista-previa-gif"); // Contenedor donde se mostrará la vista previa.
 
   // Si el archivo se carga en otra página y no existen estos elementos, no hace nada.
   if (!videoPreview) return;
 
   // Variables globales de trabajo
-  let mediaStream = null;   // Guarda el flujo de video obtenido de la cámara.
+  let mediaStream = null; // Guarda el flujo de video obtenido de la cámara.
   let mediaRecorder = null; // Instancia del grabador.
-  let chunks = [];          // Fragmentos del video capturados durante la grabación.
-  let recordedBlob = null;  // Archivo final generado cuando se detiene la grabación.
+  let chunks = []; // Fragmentos del video capturados durante la grabación.
+  let recordedBlob = null; // Archivo final generado cuando se detiene la grabación.
 
-  
   // Inicialización de la cámara
- 
+
   async function initCamera() {
     try {
       // Se solicita permiso al usuario para acceder a la cámara.
       // Solo se pide video, no audio.
       mediaStream = await navigator.mediaDevices.getUserMedia({
         video: { width: { ideal: 640 }, height: { ideal: 480 } },
-        audio: false
+        audio: false,
       });
 
       // Si se acepta, se muestra la imagen en el elemento <video>.
@@ -48,19 +43,19 @@
       btnGrabar.disabled = false;
       btnDetener.disabled = true;
       btnSubir.disabled = true;
-
     } catch (e) {
       // Si se niega el permiso o hay un error, se desactiva todo.
-      alert("No se pudo acceder a la cámara. Verificá los permisos del navegador.");
+      alert(
+        "No se pudo acceder a la cámara. Verificá los permisos del navegador."
+      );
       btnGrabar.disabled = true;
       btnDetener.disabled = true;
       btnSubir.disabled = true;
     }
   }
 
- 
   // Inicio y detención de la grabación
- 
+
   function startRecording() {
     // Si no hay flujo de cámara, no se puede grabar.
     const stream = window._gifosStream;
@@ -134,9 +129,9 @@
     // Crea un elemento <video> para mostrar el resultado grabado.
     const vid = document.createElement("video");
     vid.src = URL.createObjectURL(blob); // Se crea una URL temporal a partir del Blob.
-    vid.autoplay = true;    // El video arranca solo.
-    vid.loop = true;        // Reproduce en bucle para simular un GIF.
-    vid.muted = true;       // Obligatorio para que autoplay funcione sin interacción.
+    vid.autoplay = true; // El video arranca solo.
+    vid.loop = true; // Reproduce en bucle para simular un GIF.
+    vid.muted = true; // Obligatorio para que autoplay funcione sin interacción.
     vid.playsInline = true; // En iOS evita el modo pantalla completa automático.
     vid.style.maxWidth = "100%";
     vid.style.border = "1px solid #6b6191";
@@ -164,9 +159,8 @@
   // Esto permite actualizar la vista previa automáticamente sin que el usuario toque nada.
   document.addEventListener("gifos:recording:finished", renderPreview);
 
-  
-  //  Subida del GIF 
-  // ============================================================================
+  //  Subida del GIF
+
   btnSubir.addEventListener("click", () => {
     // Si se intenta subir sin haber grabado nada, se cancela la acción.
     if (!window._gifosRecordingBlob) {
@@ -178,11 +172,9 @@
     subirGif(window._gifosRecordingBlob);
   });
 
- 
   //  Inicialización automática
- 
+
   // Al cargar la página, se ejecuta la función de inicio de cámara.
   // Es importante que esto ocurra después de definir todos los eventos.
   initCamera();
-
 })();
