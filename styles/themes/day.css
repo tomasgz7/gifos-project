@@ -1,17 +1,95 @@
+/* En este archivo defino los colores y estilos generales del modo Día */
+/* Mantengo el estilo retro original de GifOS con los mismos tonos y gradiente. */
+
 body {
   background-color: #fff4fc;
   color: #110038;
+  font-family: "Chakra Petch", sans-serif;
 }
 
-header {
+/* Header principal con el gradiente azul-rosa del original */
+.header {
   background: linear-gradient(to right, #4180f6, #f7c9f3 100%);
+  border: 1px solid #110038;
+  padding: 12px 16px;
+  box-shadow: 0 1px 0 0 #110038;
 }
 
-main > h1 {
-  background: linear-gradient(to right, #6aa3ff, #e4b5e3);
+/* Logo centrado verticalmente */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-button {
-  background: #f7c9f3;
+/* Enlaces del menú */
+.menu a {
+  text-decoration: none;
   color: #110038;
+  font-weight: 600;
+  margin-right: 16px;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+/* Botones retro del menú */
+.button {
+  background-color: #f7c9f3;
+  color: #110038;
+  border: 1px solid #110038;
+  font-family: "MS Sans Serif", Arial, sans-serif;
+  font-size: 14px;
+  padding: 6px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Hover del botón */
+.button:hover {
+  background-color: #ee3efe;
+  color: #fff;
+}
+
+/* Menú desplegable del tema */
+.menu-desplegable {
+  position: relative;
+  display: inline-block;
+}
+
+/* Caja del menú al abrirlo */
+.desplegable {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: #e6e6e6;
+  border: 1px solid #b4b4b4;
+  width: 150px;
+  z-index: 10;
+}
+
+/* Botones dentro del menú */
+.desplegable button {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: "MS Sans Serif", Arial, sans-serif;
+  font-size: 14px;
+  color: #110038;
+  cursor: pointer;
+}
+
+.desplegable button:hover {
+  background-color: #2e32fb;
+  color: #fff;
+}
+
+/* Clase reutilizable para ocultar */
+.oculto {
+  display: none;
 }

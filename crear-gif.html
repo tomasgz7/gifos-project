@@ -1,73 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>GifOS - Crear GIF</title>
-    <!-- Estilos Globales-->
-    <link rel="stylesheet" href="styles/base.css" />
-    <link rel="stylesheet" href="styles/components.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&display=swap"
       rel="stylesheet"
     />
-
-    <!--Estilos del tema-->
-    <link rel="stylesheet" href="styles/themes/day.css" id="hoja-estilos" />
+    <link
+      id="hoja-estilos"
+      rel="stylesheet"
+      href="styles/themes/day.css"
+      type="text/css"
+    />
+    <link
+      rel="shortcut icon"
+      href="assets/images/gifOF_logo.png"
+      class="favicon"
+    />
   </head>
+
   <body>
     <header class="header">
-      <p>¡Bienvenido a GifOS!</p>
+      <p>
+        ¡Bienvenidos/as a GifOS! —————— Donde los gifs están. ////// Número de
+        visitas: 12.765.803
+      </p>
+    </header>
 
+    <section>
       <div class="logo-container">
-        <a href="index.html">
-          <img
-            class="logo"
-            id="logo"
-            src="assets/images/gifOF_logo.png"
-            alt="GifOS logo"
-          />
-        </a>
+        <div>
+          <a href="index.html">
+            <img
+              class="logo"
+              id="logo"
+              src="assets/images/gifOF_logo.png"
+              alt="Logo de GifOS"
+            />
+          </a>
+        </div>
 
-        <div class="menu">
-          <a href="crear-gif.html" class="creargifs button">Crear GIF</a>
-          <a href="mis-gifs.html" class="misgifs button">Mis GIFs</a>
+        <nav class="menu">
+          <a class="button volver" href="index.html">Volver</a>
 
           <div class="menu-desplegable">
-            <button class="button elegirtema" id="boton-tema">
-              Elegir tema
-              <img src="assets/icons/dropdown.svg" alt="Icono desplegable" />
-            </button>
-            <div class="desplegable oculto" id="menu-tema">
-              <button class="theme" data-tema="day">Sailor Day</button>
-              <button class="theme" data-tema="night">Sailor Night</button>
+            <div>
+              <a class="button elegirtema" id="boton-tema">
+                Elegir tema
+                <img
+                  class="button desplegable"
+                  src="assets/icons/dropdown.svg"
+                  alt="Desplegable"
+                />
+              </a>
+            </div>
+
+            <div id="menu-tema" class="desplegable oculto">
+              <a href="#" data-tema="day" class="theme">Sailor Day</a>
+              <a href="#" data-tema="night" class="theme">Sailor Night</a>
+            </div>
+          </div>
+
+          <a id="misgifs" class="misgifs" href="mis-gifs.html"
+            ><u>M</u>is GIFs</a
+          >
+        </nav>
+      </div>
+    </section>
+
+    <section class="crear-gif">
+      <div class="contenedor-crear">
+        <div class="ventana">
+          <div class="contenedor-titulo">
+            <p class="titulo">Crear GIFO</p>
+          </div>
+
+          <div class="crear-content">
+            <div class="contenedor-interno">
+              <p>
+                Aquí podrás crear tus propios GIFOS. ¡Haz clic en "Comenzar"
+                para grabar tu video y convertirlo en un GIF!
+              </p>
+              <p>
+                Una vez que termines, podrás subirlo a GifOS y compartirlo con
+                todos.
+              </p>
+            </div>
+
+            <div class="contenedor-botones">
+              <button id="btnComenzar" class="button">Comenzar</button>
+              <button id="btnGrabar" class="button oculto">Grabar</button>
+              <button id="btnDetener" class="button oculto">Detener</button>
+              <button id="btnSubir" class="button oculto">Subir GIF</button>
             </div>
           </div>
         </div>
+
+        <div class="preview">
+          <video id="vista-previa-camara" autoplay muted playsinline></video>
+          <div id="vista-previa-gif" class="oculto"></div>
+          <div id="estado-subida" class="oculto">Subiendo GIF...</div>
+        </div>
       </div>
-    </header>
+    </section>
 
-    <main>
-      <h1>Crear un GIF desde tu cámara</h1>
-
-      <video id="vista-previa-camara" autoplay muted playsinline></video>
-
-      <div id="vista-previa-gif"></div>
-
-      <div class="controles">
-        <button id="boton-grabar">Grabar</button>
-        <button id="boton-detener" disabled>Detener</button>
-        <button id="boton-subir" disabled>Subir GIF</button>
-      </div>
-    </main>
-
-    <!-- Vinculacion los archivos JS-->
-
-    <script src="js/search.js"></script>
-    <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/theme.js"></script>
     <script src="js/record.js"></script>
     <script src="js/upload.js"></script>
   </body>
