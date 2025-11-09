@@ -1,6 +1,3 @@
-/* Defino la paleta de colores y estilos para el modo Noche */
-/* Mantengo los fucsias y violetas característicos del diseño original */
-
 :root {
   --fondo: #110038;
   --texto: #ffffff;
@@ -12,25 +9,4 @@
 body {
   background-color: var(--fondo);
   color: var(--texto);
-}
-
-header {
-  background: linear-gradient(to right, #2e32fb 0%, #ee3efe 100%);
-  border-bottom: 1px solid #ffffff;
-}
-
-button,
-.button {
-  background-color: var(--boton);
-  color: var(--texto-boton);
-  border: 1px solid var(--borde-boton);
-}
-
-/* Enlaces del menú */
-.menu a {
-  color: var(--texto);
-}
-
-.grid-gifs img {
-  border-color: #ffffff;
 }

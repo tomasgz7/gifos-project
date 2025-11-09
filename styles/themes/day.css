@@ -1,6 +1,3 @@
-/* Defino la paleta de colores y estilos para el modo Día */
-/* Estos valores son los mismos que usa el diseño original en su versión clara */
-
 :root {
   --fondo: #fff4fc;
   --texto: #110038;
@@ -12,25 +9,4 @@
 body {
   background-color: var(--fondo);
   color: var(--texto);
-}
-
-header {
-  background: linear-gradient(to right, #4180f6, #f7c9f3 100%);
-  border-bottom: 1px solid var(--borde-boton);
-}
-
-button,
-.button {
-  background-color: var(--boton);
-  color: var(--texto-boton);
-  border: 1px solid var(--borde-boton);
-}
-
-/* Enlaces del menú */
-.menu a {
-  color: var(--texto);
-}
-
-.grid-gifs img {
-  border-color: #6b6191;
 }
