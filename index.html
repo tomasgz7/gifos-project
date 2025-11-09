@@ -23,8 +23,19 @@
         <a href="index.html">Inicio</a>
         <a href="crear-gif.html">Crear GIF</a>
         <a href="mis-gifs.html">Mis GIFs</a>
-        <button id="boton-tema">Cambiar tema</button>
       </nav>
+      <!-- Selector de tema igual al original -->
+      <div class="contenedor-tema">
+        <button id="boton-tema" class="btn-tema">
+          Elegir tema <img src="assets/icons/dropdown.svg" alt="" />
+        </button>
+
+        <!-- Menú desplegable -->
+        <ul id="menu-tema" class="menu-tema oculto">
+          <li data-tema="day">Sailor Day</li>
+          <li data-tema="night">Sailor Night</li>
+        </ul>
+      </div>
     </header>
 
     <main>
@@ -41,7 +52,7 @@
     </main>
 
     <!-- Vinculacion los archivos JS-->
-    
+
     <script src="js/search.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
