@@ -4,6 +4,7 @@
   // Esperar siempre a que el DOM esté listo antes de buscar elementos
   // addEventListener escucha un evento (como clic o tecla)
   // y ejecuta la función cuando ese evento sucede.
+  //getElementById Buscá en el documento un elemento que tenga este id y traémelo.
   document.addEventListener("DOMContentLoaded", function () {
     const hojaEstilos = document.getElementById("hoja-estilos");
     const botonTema = document.getElementById("boton-tema");

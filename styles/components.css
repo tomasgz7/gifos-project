@@ -93,7 +93,7 @@ input[type="text"] {
   height: 16px;
 }
 
-/* GRILLA DE GIFS                  */
+/* GRID DE GIFS (GRILLAS) */
 
 .grid-gifs {
   display: grid;
@@ -115,7 +115,7 @@ input[type="text"] {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* CREAR GIFOS                     */
+/* CREAR GIFOS  */
 
 .crear-content {
   padding: 20px;
@@ -160,7 +160,7 @@ input[type="text"] {
   margin-top: 12px;
 }
 
-/* RESPONSIVE GENERAL              */
+/* RESPONSIVE GENERAL  */
 
 @media (max-width: 900px) {
   .grid-gifs {
@@ -178,7 +178,7 @@ input[type="text"] {
   }
 }
 
-/* SECCIÓN MIS GIFOS               */
+/* SECCIÓN MIS GIFOS */
 
 #contenedor-mis-gifs {
   display: grid;
@@ -196,7 +196,7 @@ input[type="text"] {
   font-size: 14px;
 }
 
-/* SECCIÓN TENDENCIAS              */
+/* SECCIÓN TENDENCIAS */
 
 .contenedor-tendencias {
   display: grid;
@@ -219,7 +219,7 @@ input[type="text"] {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* HASHTAGS DE LOS GIFS (RETRO)    */
+/* HASHTAGS DE LOS GIFS (RETRO) */
 
 .hashtag-container {
   display: flex;
@@ -248,7 +248,7 @@ input[type="text"] {
   color: #fff;
 }
 
-/* RESPONSIVE TENDENCIAS           */
+/* RESPONSIVE TENDENCIAS */
 
 @media (max-width: 900px) {
   .contenedor-tendencias {
