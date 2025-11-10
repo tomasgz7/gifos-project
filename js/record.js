@@ -18,6 +18,7 @@ function iniciarGrabacion() {
   const previewGif = document.getElementById("vista-previa-gif");
 
   // Primero, cuando el usuario presione “Comenzar”, le pido acceso a la cámara.
+  //Condición 7: Captura de video con MediaRecorder
   btnComenzar.addEventListener("click", async () => {
     try {
       // Solicito permisos al navegador para usar la cámara (sin audio).

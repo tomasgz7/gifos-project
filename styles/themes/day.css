@@ -1,3 +1,6 @@
+/* :root guarda variables globales de CSS, -- son las variables
+   Las uso para cambiar el tema sin tener que modificar todo el estilo. */
+/* Condición 2: Variables globales para los temas */
 :root {
   --fondo: #fff4fc;
   --texto: #110038;

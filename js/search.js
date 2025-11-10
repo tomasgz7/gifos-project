@@ -13,8 +13,10 @@ function iniciarBusqueda() {
 
   // Si alguno de los elementos no existe, no ejecuto nada.
   if (!inputBusqueda || !contenedorResultados) return;
-
+  //Condición 5: Barra de búsqueda que realiza un GET al endpoint de Giphy
   // Agrego el evento para buscar cuando el usuario presione Enter.
+  //keyup es un evento del teclado que se activa
+  //cuando el usuario suelta una tecla después de presionarla.
   inputBusqueda.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
       const termino = inputBusqueda.value.trim();

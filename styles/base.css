@@ -44,7 +44,7 @@ body {
   align-items: center;
   gap: 10px;
 }
-
+/* Condición 10: Diseño igual al proyecto original, estilo retro */
 .boton-header {
   background-color: var(--boton);
   color: var(--texto-boton);

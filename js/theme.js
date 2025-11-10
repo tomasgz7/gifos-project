@@ -1,5 +1,9 @@
+// Función autoejecutable: se ejecuta sola (automaticamente) al cargar el script
 (function () {
+  //Condición 1: Barra de navegación con dropdown que cambia el tema (día/noche)
   // Esperar siempre a que el DOM esté listo antes de buscar elementos
+  // addEventListener escucha un evento (como clic o tecla)
+  // y ejecuta la función cuando ese evento sucede.
   document.addEventListener("DOMContentLoaded", function () {
     const hojaEstilos = document.getElementById("hoja-estilos");
     const botonTema = document.getElementById("boton-tema");

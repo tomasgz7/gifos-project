@@ -4,11 +4,11 @@
 // - Grabación y subida de GIFs (record.js + upload.js)
 // - Mis GIFs (mis-gifs.js)
 // - Secciones dinámicas del inicio (sugerencias y tendencias)
-//
 
-const API_KEY = "1rUtXF100IXzkDpmrvSnphzoJ3hjYNi9";
+
 
 // Espera a que todo el DOM esté listo antes de inicializar las funciones
+// Condición 3: Inicialización dinámica de módulos al cargar el DOM
 document.addEventListener("DOMContentLoaded", () => {
   // Inicialización del tema (día / noche)
 
@@ -54,7 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //  SECCIÓN: “LOS MÁS BUSCADOS” (SUGERENCIAS)
-
+//  Condición 6: Tarjetas de sugerencias con botón "Ver más" desde la API
+// fetch realiza un GET a la API de Giphy y forEach recorre los resultados
 async function cargarSugerencias() {
   try {
     const endpoint = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=4&rating=g`;
@@ -110,7 +111,12 @@ async function cargarSugerencias() {
 }
 
 // SECCIÓN: “TENDENCIAS”
-
+//Condición 4: Galería de tendencias traída desde la API de Giphy
+// fetch sirve para hacer una petición GET a una API (traer datos)
+// async/await permite esperar la respuesta antes de continuar
+// response.json convierte la respuesta en un formato que JS pueda usar
+// innerHTML se usa para agregar o limpiar contenido HTML dentro de un elemento
+// forEach recorre cada GIF y lo agrega dinámicamente al contenedor
 async function cargarTendencias() {
   try {
     const endpoint = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=12&rating=g`;

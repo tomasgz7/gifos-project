@@ -2,7 +2,6 @@
 // Mi objetivo es leer los IDs almacenados en localStorage y traer desde Giphy
 // las imágenes para mostrarlas en la grilla principal de "Mis GIFs".
 
-const API_KEY = "1rUtXF100IXzkDpmrvSnphzoJ3hjYNi9"; // reemplazá por tu API Key de Giphy
 
 function cargarMisGifs() {
   const contenedorMisGifs = document.getElementById("contenedor-mis-gifs");
@@ -11,7 +10,7 @@ function cargarMisGifs() {
   const misGifs = JSON.parse(localStorage.getItem("misGifs")) || [];
 
   if (misGifs.length === 0) {
-    contenedorMisGifs.innerHTML = "<p>Todavía no subiste ningún GIF 😅</p>";
+    contenedorMisGifs.innerHTML = "<p>Todavía no subiste ningún GIF</p>";
     return;
   }
 
@@ -36,6 +35,6 @@ async function obtenerMisGifs(listaIds, contenedor) {
     });
   } catch (error) {
     console.error("Error al cargar tus GIFs:", error);
-    contenedor.innerHTML = "<p>Error al cargar tus GIFs 😢</p>";
+    contenedor.innerHTML = "<p>Error al cargar tus GIFs</p>";
   }
 }

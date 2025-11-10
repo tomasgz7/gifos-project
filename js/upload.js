@@ -2,7 +2,6 @@
 // Mi objetivo es enviar el archivo generado en record.js, mostrar el progreso
 // y guardar el ID del GIF subido en localStorage para poder mostrarlo luego en "Mis GIFs".
 
-const API_KEY = "1rUtXF100IXzkDpmrvSnphzoJ3hjYNi9"; // reemplazá por tu propia API Key de Giphy
 
 function subirGif(gifBlob) {
   // Capturo los elementos del DOM que necesito para la interfaz de subida
@@ -14,17 +13,27 @@ function subirGif(gifBlob) {
   formData.append("file", gifBlob, "myGif.gif");
   formData.append("api_key", API_KEY);
 
-  // Muestro el texto "Subiendo..." mientras se realiza el POST
+ // Muestro el texto "Subiendo..." mientras se realiza el POST
+ //Condición extra: Barra o indicador de Upload funcional
+ // fetch con método POST envía el GIF a la API de Giphy.
+ // Muestra el estado del proceso en pantalla (subiendo / completado).
   estadoSubida.textContent = "Subiendo GIF...";
   estadoSubida.classList.remove("oculto");
 
   // Realizo la petición a la API de Giphy
+  // Condición 8: POST a la API de Giphy para subir el GIF
+
+// fetch con método POST envía datos al servidor
+// FormData contiene el GIF capturado para subirlo
+// response.json convierte la respuesta para obtener el ID del GIF
   fetch("https://upload.giphy.com/v1/gifs", {
     method: "POST",
     body: formData,
   })
     .then((response) => response.json())
     .then((data) => {
+  //Condición 9: LocalStorage para guardar y mostrar mis GIFs
+  // localStorage permite guardar datos en el navegador (persisten al recargar)
       // Guardo el ID del nuevo GIF en el localStorage
       const gifId = data.data.id;
       guardarGifEnLocalStorage(gifId);
