@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
       id="favicon"
       rel="icon"
       type="image/png"
-      href="assets/images/gifOF_logo.png"
-    />
+      href="assets/images/gifOF_logo.png">
     <title>GifOS - Inicio</title>
 
     <!-- Estilos globales -->
-    <link rel="stylesheet" href="styles/base.css" />
-    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/components.css">
 
     <!-- Tipografía Chakra Petch -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet">
 
     <!-- Estilos del tema -->
-    <link rel="stylesheet" href="styles/themes/day.css" id="hoja-estilos" />
+    <link rel="stylesheet" href="styles/themes/day.css" id="hoja-estilos">
   </head>
 
   <body>
@@ -42,8 +40,7 @@
             id="logo"
             src="assets/images/gifOF_logo.png"
             alt="GifOS logo"
-            class="logo"
-          />
+            class="logo">
         </a>
 
         <nav class="menu-header">
@@ -67,7 +64,7 @@
       <!-- Sección Buscador -->
       <section class="busqueda ventana">
         <div class="contenedor-titulo">
-          <p class="titulo">Buscar</p>
+          <h2 class="titulo">Buscar</h2>
         </div>
 
         <div class="contenedor-barra">
@@ -75,14 +72,12 @@
             id="entrada-busqueda"
             class="barra-busqueda"
             type="text"
-            placeholder="Busca GIFs, hashtags, temas, busca lo que quieras..."
-          />
+            placeholder="Busca GIFs, hashtags, temas, busca lo que quieras...">
           <div class="boton-buscar" id="boton-buscar">
             <img
               class="boton-lupa"
               src="assets/icons/lupa_inactive.svg"
-              alt="Lupa"
-            />
+              alt="Lupa">
             <span>Buscar</span>
           </div>
         </div>
@@ -99,7 +94,7 @@
       <!-- Sección Sugerencias -->
       <section class="sugerencias ventana">
         <div class="contenedor-titulo">
-          <p class="titulo">Los más buscados</p>
+          <h2 class="titulo">Los más buscados</h2>
         </div>
         <div id="suggestions" class="grid-gifs"></div>
       </section>
@@ -107,7 +102,7 @@
       <!-- Sección Tendencias -->
       <section class="tendencias ventana">
         <div class="contenedor-titulo">
-          <p class="titulo">Tendencias</p>
+          <h2 class="titulo">Tendencias</h2>
         </div>
         <div id="trends" class="contenedor-tendencias"></div>
       </section>
